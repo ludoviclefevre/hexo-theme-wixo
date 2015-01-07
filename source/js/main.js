@@ -1,18 +1,18 @@
 function setTitleDate()
 {
 	var body_width = $("#body").css("width")
-	var container_width = $("#container").css("width")
-	var container_margin_right = $("#container").css("margin-right");
-	var container_padding_right = $("#container").css("padding-right");
-	//var container_right = parseInt(container_margin_right) + parseInt(container_padding_right);
+	var container = $("#container")
+	var container_width = container.css("width")
+	var container_margin_right = container.css("margin-right");
+	var container_padding_right = container.css("padding-right");
 	var container_right = (parseInt(body_width) - parseInt(container_width))/2 + 10;
 	$("#title-date").css("right", container_right);
 }
 
 $(document).ready(function() {
-	
-	$(window).scroll(function(){  //只要窗口滚动,就触发下面代码 
-        var scrollt = document.documentElement.scrollTop + document.body.scrollTop; //获取滚动后的高度 
+
+	$(window).scroll(function(){  //只要窗口滚动,就触发下面代码
+        var scrollt = document.documentElement.scrollTop + document.body.scrollTop; //获取滚动后的高度
         if( scrollt >200 ){  //判断滚动后高度超过200px,就显示
             $("#gotop").fadeIn(400); //淡出
 			$(".navbar").stop().fadeTo(400, 0.2);
@@ -32,10 +32,8 @@ $(document).ready(function() {
 		if ( scrollt > 200) {
 			$(".navbar").fadeTo(100, 0.2);
 		}
-	});	
+	});
 	setTitleDate();
 });
 
-$(window).resize(function () {
-	setTitleDate();
-})
+$(window).resize(setTitleDate)
